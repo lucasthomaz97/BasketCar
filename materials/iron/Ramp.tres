@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dmhlbxgys5cn4"]
+
+[ext_resource type="Shader" path="res://materials/iron/Iron.gdshader" id="1_83mn1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_83mn1")
+shader_parameter/ColorUniform = Color(1, 1, 1, 1)
+shader_parameter/HowShiny = 7.0
+shader_parameter/Roughness = 0.7

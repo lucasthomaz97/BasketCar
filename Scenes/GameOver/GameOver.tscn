@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmm57bemcxeb2"]
+
+[ext_resource type="Script" path="res://Scenes/GameOver/GameOver.gd" id="1_jrqk6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8phu"]
+bg_color = Color(0, 0.2, 0.352941, 1)
+border_width_top = 10
+border_width_bottom = 10
+border_color = Color(0, 0.2, 0.352941, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lc80"]
+bg_color = Color(0.447059, 0.623529, 1, 1)
+border_width_top = 20
+border_width_bottom = 20
+border_color = Color(0.447059, 0.623529, 1, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y5he"]
+bg_color = Color(0.933333, 0.439216, 0, 1)
+corner_radius_top_left = 5
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38qle"]
+bg_color = Color(0.447059, 0.623529, 1, 1)
+border_width_top = 20
+border_width_bottom = 20
+border_color = Color(0.447059, 0.623529, 1, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_right = 10
+
+[node name="GameOverScreen" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jrqk6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.5
+offset_top = -86.0
+offset_right = 151.5
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.827451, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Time's Out!!"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.827451, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="TopScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.827451, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="Retry" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_s8phu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4lc80")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4y5he")
+theme_override_styles/focus = SubResource("StyleBoxFlat_38qle")
+text = "Retry
+"
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_s8phu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4lc80")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4y5he")
+theme_override_styles/focus = SubResource("StyleBoxFlat_38qle")
+text = "Menu
+"
+
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]

@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://0bxsbl3815my"]
+
+[ext_resource type="Shader" path="res://materials/Glass/Glass.gdshader" id="1_8i6ia"]
+
+[sub_resource type="Gradient" id="Gradient_gfdpf"]
+offsets = PackedFloat32Array(0, 0.467391)
+colors = PackedColorArray(0.758192, 0.758192, 0.758192, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_to68g"]
+fractal_type = 2
+fractal_octaves = 6
+fractal_lacunarity = 5.0
+fractal_gain = 1.0
+fractal_weighted_strength = 0.84
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vnj61"]
+in_3d_space = true
+seamless = true
+as_normal_map = true
+bump_strength = 2.0
+color_ramp = SubResource("Gradient_gfdpf")
+noise = SubResource("FastNoiseLite_to68g")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8i6ia")
+shader_parameter/distortion_size = 0.4
+shader_parameter/glass = SubResource("NoiseTexture2D_vnj61")

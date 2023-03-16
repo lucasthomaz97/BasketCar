@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://chexoudhjbmtd"]
+
+[ext_resource type="Texture2D" uid="uid://c8s2yyvccxev7" path="res://materials/Sand/textures/coast_sand_03_diff_1k.jpg" id="1_3rmfe"]
+[ext_resource type="Texture2D" uid="uid://b6j3trtawf8k5" path="res://materials/Sand/textures/coast_sand_03_ao_1k.jpg" id="2_ewqnb"]
+[ext_resource type="Texture2D" uid="uid://dhhufpar5u8ms" path="res://materials/Sand/textures/coast_sand_03_nor_gl_1k.png" id="3_n5xc7"]
+[ext_resource type="Texture2D" uid="uid://bw6v7m2iqyceh" path="res://materials/Sand/textures/coast_sand_03_rough_1k.png" id="4_ng466"]
+
+[resource]
+diffuse_mode = 2
+albedo_color = Color(0.996078, 1, 0.8, 1)
+albedo_texture = ExtResource("1_3rmfe")
+metallic_specular = 0.0
+roughness_texture = ExtResource("4_ng466")
+normal_enabled = true
+normal_texture = ExtResource("3_n5xc7")
+ao_enabled = true
+ao_texture = ExtResource("2_ewqnb")
+uv1_scale = Vector3(0.02, 0.02, 0.02)
+uv1_offset = Vector3(200, 200, 200)
+uv1_triplanar = true

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ekalb8row3gk"]
+
+[ext_resource type="Script" path="res://Scenes/Reseter/reseter.gd" id="1_78pkx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i4b1h"]
+size = Vector3(30000, 30, 30000)
+
+[node name="Reseter" type="Area3D"]
+script = ExtResource("1_78pkx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -129.314, 0)
+shape = SubResource("BoxShape3D_i4b1h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

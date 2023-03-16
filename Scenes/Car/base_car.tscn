@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://0yj677a8gvxd"]
+
+[ext_resource type="Script" path="res://Scenes/Car/base_car.gd" id="1_fwjro"]
+[ext_resource type="Script" path="res://Scenes/CameraPivot/CameraPivot.gd" id="2_8olnv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uuyhq"]
+size = Vector3(0.727074, 0.413738, 1.49416)
+
+[sub_resource type="BoxMesh" id="BoxMesh_582vw"]
+size = Vector3(0.7, 0.4, 1.5)
+
+[node name="VehicleBody3D" type="VehicleBody3D"]
+mass = 100.0
+script = ExtResource("1_fwjro")
+hp = 350
+aceleration = 35
+brake_power = 20
+
+[node name="Body" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_uuyhq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("BoxMesh_582vw")
+
+[node name="FR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.474847, -0.148449, 0.740361)
+use_as_steering = true
+wheel_radius = 0.3
+
+[node name="FL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.475436, -0.148449, 0.743639)
+use_as_steering = true
+wheel_radius = 0.3
+
+[node name="RR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432193, -0.148449, -0.717137)
+use_as_traction = true
+wheel_radius = 0.3
+
+[node name="RL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.472626, -0.148449, -0.736077)
+use_as_traction = true
+wheel_radius = 0.3
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_8olnv")
+move_weight = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.990983, 0.133986, 0, -0.133986, 0.990983, 0, 0.723, 2.506)
+fov = 76.3565

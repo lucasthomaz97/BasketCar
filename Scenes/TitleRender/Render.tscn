@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://b5mac3oy64d7u"]
+
+[ext_resource type="PackedScene" uid="uid://bvn8q6isa1see" path="res://Assets/Car.glb" id="1_f1gk2"]
+[ext_resource type="PackedScene" uid="uid://e507hohlq7gp" path="res://Assets/basket.glb" id="2_g5ojv"]
+[ext_resource type="Material" uid="uid://0bxsbl3815my" path="res://materials/Glass/glass.tres" id="3_xqjme"]
+[ext_resource type="Texture2D" uid="uid://dax6jmg4lndk7" path="res://materials/Sky/stadium_01_4k.exr" id="4_bmhbw"]
+[ext_resource type="Material" uid="uid://bt01olchfs8dp" path="res://materials/iron/orange_iron.tres" id="4_ixbxf"]
+[ext_resource type="Material" uid="uid://chexoudhjbmtd" path="res://materials/Sand/Sand.tres" id="5_3tp1h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4tbc"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 0.462745, 0.309804, 1)
+emission_energy_multiplier = 7.0
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3rm2l"]
+panorama = ExtResource("4_bmhbw")
+
+[sub_resource type="Sky" id="Sky_v0rne"]
+sky_material = SubResource("PanoramaSkyMaterial_3rm2l")
+
+[sub_resource type="Environment" id="Environment_a2aks"]
+background_mode = 2
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_v0rne")
+sky_rotation = Vector3(0, 5.71246, 0)
+ambient_light_color = Color(0.541176, 0.541176, 0.541176, 1)
+ambient_light_sky_contribution = 0.3
+reflected_light_source = 2
+tonemap_mode = 3
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ccja4"]
+size = Vector3(5000, 1, 5000)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3spaw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1oomo"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35007, 0.186308, 3.72705)
+
+[node name="Car" parent="." instance=ExtResource("1_f1gk2")]
+transform = Transform3D(-0.152278, 0.0574198, 0.116252, 0.00220648, 0.180441, -0.086234, -0.12964, -0.0643751, -0.138019, -1.29182, 0, 1.28892)
+
+[node name="basket" parent="." instance=ExtResource("2_g5ojv")]
+transform = Transform3D(0.123033, 0, -0.15768, 0, 0.2, 0, 0.15768, 0, 0.123033, 1.38444, 0, -1.73244)
+
+[node name="Cube" parent="basket" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u4tbc")
+surface_material_override/1 = ExtResource("3_xqjme")
+surface_material_override/2 = ExtResource("4_ixbxf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.940717, -0.276149, 0.196959, -0.0168732, 0.541855, 0.840303, -0.338772, -0.793811, 0.505073, 0, 3.25999, 2.25131)
+light_color = Color(0.956863, 0.741176, 0, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a2aks")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -75, 0)
+mesh = SubResource("BoxMesh_ccja4")
+surface_material_override/0 = ExtResource("5_3tp1h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.713348, -7.99441, 0.575637, 0, 16.4278, 0.57037, -0.70081, 8.13744, -0.585936, 9.23802, -17.5874, -9.73636)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_3spaw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_1oomo")
+surface_material_override/0 = ExtResource("4_ixbxf")
+
+[editable path="basket"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx28cpg1x7ix5"]
+
+[ext_resource type="PackedScene" uid="uid://b5mac3oy64d7u" path="res://Scenes/TitleRender/Render.tscn" id="1_557d7"]
+[ext_resource type="Script" path="res://Scenes/Menu/Menu.gd" id="1_gumg1"]
+[ext_resource type="AudioStream" uid="uid://bw2c5spbiu1lu" path="res://Sounds/BasketCar.mp3" id="3_og0he"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32er6"]
+bg_color = Color(0.827451, 0.396078, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.827451, 0.396078, 0, 1)
+corner_radius_top_left = 25
+corner_radius_bottom_right = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idon5"]
+bg_color = Color(0.964706, 0.772549, 0, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.964706, 0.772549, 0, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hb0g"]
+bg_color = Color(0, 0.2, 0.352941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwovl"]
+bg_color = Color(0.827451, 0.396078, 0, 1)
+corner_radius_top_left = 25
+corner_radius_bottom_right = 25
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gumg1")
+
+[node name="Node3D" parent="." instance=ExtResource("1_557d7")]
+
+[node name="DirectionalLight3D" parent="Node3D" index="3"]
+transform = Transform3D(0.996483, 0.0781077, -0.0303571, -0.0168732, 0.541855, 0.840303, 0.0820833, -0.836835, 0.541267, 0, 3.25999, 2.25131)
+
+[node name="Label3D" type="Label3D" parent="Node3D"]
+transform = Transform3D(0.959619, -0.0178357, -0.280737, -0.0599782, 0.962067, -0.26614, 0.274834, 0.272231, 0.922148, -0.676936, 2.65322, -0.768296)
+modulate = Color(0.796078, 0.352941, 0, 1)
+text = "BasketCar"
+font_size = 170
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -318.0
+offset_right = 344.0
+offset_bottom = -34.0
+grow_vertical = 0
+alignment = 2
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_32er6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_idon5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3hb0g")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vwovl")
+text = "Play"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_og0he")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+
+[editable path="Node3D"]
+[editable path="Node3D/basket"]
